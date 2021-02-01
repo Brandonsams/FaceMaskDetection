@@ -18,3 +18,22 @@ Was there anything for this project that you wanted to accomplish, but didn't?
 
     I wanted to, originally, construct the entire data pipeline, from video feed to face detection to mask prediction. However, due to time constraints, I ended up just using images to train and test the model.
 
+Was there any bias in the original dataset?
+
+    When looking back at the original dataset, it seemed that most of the images were from people with Asian descent. So yes there was definitely bias in the dataset. If the model was shown a person of African descent, for example, then it would likely have a hard time, as it had never been shown that data before.
+
+Did you set any confidence thresholds for the prediciton? i.e., the model must be x% confident that an image falls into a category for a prediciton to be made at all?
+
+    No, this model just produces a best guess. So whichever class is the most confident, that is the prediciton.
+
+Why did you use powershell to make the csv file?
+
+    The simple answer is that I am familiar with powershell, after having used it for Windows system administration for years. Its an incredibly powerful scripting language, available on macOS and Linux as well. Highly recommend.
+
+For the "mask_worn_incorrectly" class, what exactly counted as worn incorrectly?
+
+    That is an excellent question. For a mask to be worn correctly, it must cover the mouth, and it must also cover the nose. If either one of those is not taking place, then the mask is worn incorrectly.
+
+Did your model take into account images which have been rotated or augmented in some way?
+
+    While this model did not take into account augmented images, I think that it is safe to say that in most circumstances, a person's face would be unrotated. But yes, that is definitely an assumption.
