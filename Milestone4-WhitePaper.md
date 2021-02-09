@@ -78,7 +78,9 @@ Once this model was compiled, I needed to fit it to the training data I had clea
 
 # Results
 
-(Work in Progress)
+In only 10 epochs, the model was able to 
+
+![Model Accuracy - Grayscale](./WhitePaperImages/Model Accuracy - Grayscale.png)
 
 # Conclusion
 
