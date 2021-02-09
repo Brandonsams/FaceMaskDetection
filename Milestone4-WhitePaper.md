@@ -1,15 +1,10 @@
+# Detecting Face Masks - A Ternary Image Classification Problem
 
-    APA references
-    Summarize your business problem/hypothesis
-    Walk through your method
-    5-8 Pages, 1000-1500 words
-    Up to 3 Illustrations @ ¼ page each
-    Up to 1 Illustration @ ½ page
-    PDF
-    1 Appendix
-    Submit your 10 questions
+Brandon Sams
 
-# Problem
+08Feb2021
+
+## Problem
 
 One of the best ways to fight Covid-19 is to simply wear a mask when out in public. This is true because it is a small step that everybody can do. In addition to masking up in the general public, (which ought to be happening anyways), there are locations where masks are required, and also must be work correctly. Common examples include hospitals, but could also include standard retail stores. As of right now, it is responsibility of the employees at that location to detect if a person is wearing a mask, and if they are wearing it correctly. 
 
@@ -17,13 +12,13 @@ Luckily, a decent amount of the detection process can, in theory, be handed off 
 
 However, this problem is not just a matter of mask wearing in general. It should also be noted that while many people do end up wearing a mask, they do so incorrectly. That is, a mask worn correctly must cover the nose and mouth completely, so as to limit the probability of transmission. This changes the problem from a simple binary classifier to one that has 3 classes, with one arguably lying between the two.
 
-# Hypothesis
+## Hypothesis
 
 I hypothesize that an image classification model can be trained to detect not only the difference between a masked individual and an unmasked individual, but it can also predict if a person is wearing a mask incorrectly or not. 
 
 I also hypothesize that this is able to be accomplished with over 90% accuracy. 
 
-# Dataset
+## Dataset
 
 The dataset that will be used for training and testing a model can be found at the following URL:
 
@@ -48,7 +43,7 @@ There is a bit of extra information in this dataset that is of little use to us,
 
 Given this information, and the images for analysis, the next stage in the data pipeline is to prepare the data for analysis.
 
-# Data Preparation
+## Data Preparation
 
 In order to load the annotation data, it was decided that a convenient way to store the data would be a simple .csv file. There are plenty of ways that one may accomplish this task, but for this project, a Powershell script was used. It loops through  each annotation file, and within each file, it then loops through each <object> node, creating a new .csv entry with each iteration. It does this by creating a new pscustomobject with specific properties, and sending it down the pipeline.
 
@@ -68,7 +63,7 @@ Given this collection of images, I then needed to split it into a training/valid
 
 I then needed to convert each one to a 2-dimensional numpy array, and flatten it into a 1-dimensional vector. This vector will serve as the input for a tensor flow model, so each input vector needs to be the same size.
 
-# Model Fitting
+## Model Fitting
 
 Once the images had been converted into vectors, they also needed to be normalized. The values for each pixel lie between 0 and 255, and they ought to lie between 0 and 1. I decided to do this as the first non-input layer for the model, just to keep the model tidy.
 
@@ -76,7 +71,7 @@ I decided to go with a sequential model, with a collection of 2-dimensional conv
 
 Once this model was compiled, I needed to fit it to the training data I had cleaned and partitioned earlier. I ended up choosing 10 epochs for this process, as the validation accuracy did not appear to be increasing past that point.
 
-# Results
+## Results
 
 In only 10 epochs, the model was able to tune a model that was 95% accurate on the training data, and 88% accurate on the validation data. I anticipate that running the model for a longer period of time would not have been beneficial, as the validation data's accuracy score was decreasing with additional epochs. 
 
@@ -92,12 +87,17 @@ These were promising results, but I was curious If somewhere upstream in the dat
 
 ![](./WhitePaperImages/ModelLoss-Color.png)
 
+This demonstrates that there is plenty of useful information that gets lost when removing color from an image. Particularly in cases like this, keeping the color in the image can improve the quality of the model by several percent, so it is worth keeping it in place.
 
-# Conclusion
+## Conclusion
 
-(Work in Progress)
+This work shows that creating a model that can detect if a person is wearing a facemask is not only possible, but a viable strategy for ensuring that masks are being worn, and that they are being worn properly.
 
-# References
+Using just 853 source images, a model was able to be trained that was over 93% accurate. With those kinds of results for a relatively small dataset, I anticipate that improved results would be found with additional images. 
+
+If this technique were used to verify that masks were being worn correctly in public spaces, I anticipate that public safety would increase as well. 
+
+## References
 
 Academy, Pink. “Wolrd’s Most Complete Masked Face Recognition Dataset Is for Free.” Medium, 16 July 2020, https://medium.com/the-programming-hub/wolrds-most-complete-masked-face-recognition-dataset-is-for-free-10d780eed512.
 
