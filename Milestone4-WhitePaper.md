@@ -78,9 +78,20 @@ Once this model was compiled, I needed to fit it to the training data I had clea
 
 # Results
 
-In only 10 epochs, the model was able to 
+In only 10 epochs, the model was able to tune a model that was 95% accurate on the training data, and 88% accurate on the validation data. I anticipate that running the model for a longer period of time would not have been beneficial, as the validation data's accuracy score was decreasing with additional epochs. 
 
-![Model Accuracy - Grayscale](./WhitePaperImages/Model Accuracy - Grayscale.png)
+![](./WhitePaperImages/ModelAccuracy-Grayscale.png)
+
+The graph of the loss function tells a similar story, where the training data has a better score than the validation data's associated score. It also appears that there is a critical point where the loss function for the validation data minimizes, and then proceeds to worsen with additional iterations.
+
+![](./WhitePaperImages/ModelLoss-Grayscale.png)
+
+These were promising results, but I was curious If somewhere upstream in the data pipeline, I had made a decision that prevented the model from being as optimized as it could have been I decided to re-run the same model, with the same hyperparameters, but this time have the images saved in color. As it turns out, this is a much better result.
+
+![](./WhitePaperImages/ModelAccuracy-Color.png)
+
+![](./WhitePaperImages/ModelLoss-Color.png)
+
 
 # Conclusion
 
